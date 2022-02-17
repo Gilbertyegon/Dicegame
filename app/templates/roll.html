@@ -1,0 +1,6 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>Player {{ game.p_turn }}'s Turn</h1>
+    <h2>Dice Roll #{{ game.roll }}</h1>
+    <h3>{{ game.dice[0] }} {{ game.dice[1] }} {{ game.dice[2] }} {{ game.dice[3] }} {{ game.dice[4] }}</h3>
+{% endblock content %}

@@ -1,0 +1,12 @@
+Dicegame_flask ==================================================================
+
+[TODO]
++ Feature: Allow naming players on new_game page with defaults 'Player1, Player2, etc'
++ Feature: Allow multiple games at once using game ids
++ Feature: Display link to current game in nav bar; disable if game not started
+
+[COMPLETED]
++ Enable multiple Dicegames per game (add extra 50 points to Dicegame category)
++ Fix failure to return results page when game is finished
++ Disallow categories that are scored zero to be scored again on subsequent turns
++ Feature: Display voided categories on score card differently (grayed out, etc.)

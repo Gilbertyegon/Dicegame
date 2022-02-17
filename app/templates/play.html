@@ -1,0 +1,116 @@
+{% extends "layout.html" %}
+{% block content %}
+<!-- <h1 style="border-bottom: 1px solid black">Dicegame</h1> -->
+<h4>Game ID: {{ game.id }}</h4>
+<div class="row">
+    <div class="column left">
+        <h2 style="border-bottom: 1px solid black"><strong>Round #{{ game.round }} - {{ game.p_names[game.p_turn] }}'s Turn</strong></h1>
+        <h3>Dice Roll {{ game.roll }}/{{ game.rolls }}</h1>
+        <table>
+            <tr style="background-color: crimson;">
+            {% for d_img in d_imgs %}
+                <td><img src="{{ url_for('static', filename='imgs/' + d_img) }}";/></td>
+            {% endfor %}
+            </tr>
+            <tr style="text-align: center; font-weight: bold;">
+                {% for i in range(5) %}
+                    <td>{{ game.dice[i] }}</td>
+                {% endfor %}
+            </tr>
+            <tr style="text-align: center;">
+                <td><a href="{{ url_for('game.hold', d=0) }}" type="button" class="btn btn-secondary btn-sm">Hold</a></td>
+                <td><a href="{{ url_for('game.hold', d=1) }}" type="button" class="btn btn-secondary btn-sm">Hold</a></td>
+                <td><a href="{{ url_for('game.hold', d=2) }}" type="button" class="btn btn-secondary btn-sm">Hold</a></td>
+                <td><a href="{{ url_for('game.hold', d=3) }}" type="button" class="btn btn-secondary btn-sm">Hold</a></td>
+                <td><a href="{{ url_for('game.hold', d=4) }}" type="button" class="btn btn-secondary btn-sm">Hold</a></td>
+            </tr>
+        </table><br>
+        {% if game.roll >= game.rolls %}
+            <a href="#" type="button" class="btn btn-danger btn-lg disabled">Roll Dice</a>
+        {% else %}
+            <a href="{{ url_for('game.roll') }}" type="button" class="btn btn-danger btn-lg">Roll Dice</a>
+        {% endif %}
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                {{ form.category.label(class="form-control-label") }}
+                {% if form.category.errors %}
+                    {{ form.category(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.category.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.category(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-info") }}
+            </div><br>
+        </form>
+    </div>
+    <div class="column right">
+
+        <!--
+            <h4><strong>{{ game.p_names[game.p_turn] }}'s Score</strong></h4>
+         <table>
+            <tr style="background-color: crimson;">
+                <th>Category</th><th>Points</th>
+                <th>Category</th><th>Points</th>
+            </tr>
+            <tr>
+                <td>Ones</td><td>{{ game.p_scores[game.p_turn]['ones'] }}</td>
+                <td>3 of a Kind</td><td>{{ game.p_scores[game.p_turn]['3ofakind'] }}</td>
+            </tr>
+            <tr>
+                <td>Twos</td><td>{{ game.p_scores[game.p_turn]['twos'] }}</td>
+                <td>4 of a Kind</td><td>{{ game.p_scores[game.p_turn]['4ofakind'] }}</td>
+            </tr>
+            <tr>
+                <td>Threes</td><td>{{ game.p_scores[game.p_turn]['threes'] }}</td>
+                <td>Full House</td><td>{{ game.p_scores[game.p_turn]['fullhouse'] }}</td>
+            </tr>
+            <tr>
+                <td>Fours</td><td>{{ game.p_scores[game.p_turn]['fours'] }}</td>
+                <td>Sm Straight</td><td>{{ game.p_scores[game.p_turn]['smstraight'] }}</td>
+            </tr>
+            <tr>
+                <td>Fives</td><td>{{ game.p_scores[game.p_turn]['fives'] }}</td>
+                <td>Lg Straight</td><td>{{ game.p_scores[game.p_turn]['lgstraight'] }}</td>
+            </tr>
+            <tr>
+                <td>Sixes</td><td>{{ game.p_scores[game.p_turn]['sixes'] }}</td>
+                <td>Dicegame</td><td>{{ game.p_scores[game.p_turn]['Dicegame'] }}</td>
+            </tr>
+            <tr>
+                <td>Bonus</td><td>{{ game.p_scores[game.p_turn]['bonus'] }}</td>
+                <td>Chance</td><td>{{ game.p_scores[game.p_turn]['chance'] }}</td>
+            </tr>
+            <tr>
+                <td>=SUB=></td><td>{{ game.p_scores[game.p_turn]['sub'] }}</td>
+                <td>=TOTAL=></td><td>{{ game.p_scores[game.p_turn]['total'] }}</td>
+            </tr>
+        </table><br>
+        <div>
+            <h5><strong>Void Categories</strong></h5>
+            <p>
+                {% if game.p_void %}
+                    {% for v in game.p_void[game.p_turn] %}
+                        {{ v }} 
+                    {% endfor %}
+                {% endif %}
+            </p>
+        </div>
+        <div>
+        --> 
+             <h5><strong>Player Scores</strong></h5>
+            {% for i in range(1, game.n_players+1) %}
+                {% if i != game.p_turn %}
+                    <p>{{ game.p_names[i] }} - {{ game.p_scores[i]['total'] }}</p>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div> 
+{% endblock content %}

@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+{% block content %}
+<div>
+    <h1 class="underline"><strong>Starting New Game...</strong></h1>
+    <h3>Game ID: {{ game.id }}</h3>
+    <h5>{{ game.n_players }} Player(s)</h3>
+</div>
+
+<!-- <a href="{{ url_for('game.play') }}" type="button" class="btn btn-info btn-lg">Continue...</a> -->
+
+<div>
+    <h3><strong>Edit Player Names</strong></h3>
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">{{ legend }}</legend>
+            <div class="form-group">
+                {{ form.player1.label(class="form-control-label") }}
+                {% if form.player1.errors %}
+                    {{ form.player1(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.player1.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.player1(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.player2.label(class="form-control-label") }}
+                {% if form.player2.errors %}
+                    {{ form.player2(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.player2.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.player2(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.player3.label(class="form-control-label") }}
+                {% if form.player3.errors %}
+                    {{ form.player3(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.player3.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.player3(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.player4.label(class="form-control-label") }}
+                {% if form.player4.errors %}
+                    {{ form.player4(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.player4.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.player4(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+        </fieldset>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-info") }}
+        </div>
+    </form>
+</div>
+{% endblock content %}

@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1 class="underline">Results</h1>
+    <div class="row">
+        {% for pos, p in p_scores %}
+            <div class="column center">
+                <h4>Player {{ pos }}'s Score</h4>
+                <table>
+                    <tr style="background-color: crimson;">
+                        <th>Category</th><th>Points</th>
+                        <th>Category</th><th>Points</th>
+                    </tr>
+                    <tr>
+                        <td>Ones</td><td>{{ p['ones'] }}</td>
+                        <td>3 of a Kind</td><td>{{ p['3ofakind'] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Twos</td><td>{{ p['twos'] }}</td>
+                        <td>4 of a Kind</td><td>{{ p['4ofakind'] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Threes</td><td>{{ p['threes'] }}</td>
+                        <td>Full House</td><td>{{ p['fullhouse'] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Fours</td><td>{{ p['fours'] }}</td>
+                        <td>Sm Straight</td><td>{{ p['smstraight'] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Fives</td><td>{{ p['fives'] }}</td>
+                        <td>Lg Straight</td><td>{{ p['lgstraight'] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Sixes</td><td>{{ p['sixes'] }}</td>
+                        <td>Dicegame</td><td>{{ p['Dicegame'] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Bonus</td><td>{{ p['bonus'] }}</td>
+                        <td>Chance</td><td>{{ p['chance'] }}</td>
+                    </tr>
+                    <tr>
+                        <td>=SUB=></td><td>{{ p['sub'] }}</td>
+                        <td>=TOTAL=></td><td>{{ p['total'] }}</td>
+                    </tr>
+                </table><br>
+            </div>
+        {% endfor %}
+    </div>
+    <div>
+        {% for w in winner %}
+            <h3><strong>{{ w }} is the winner!</strong></h3>
+        {% endfor %}
+    </div>
+    
+    <a href="{{ url_for('main.home') }}" type="button" class="btn btn-info btn-lg">Play Again!</a>
+{% endblock content %}
