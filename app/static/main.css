@@ -1,0 +1,60 @@
+body
+{
+    background-color: honeydew;
+    padding: 20px;
+    margin-top: 5rem;
+}
+
+div
+{
+    padding: 8px;
+}
+
+table, th, td
+{
+    color: black;
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 5px;
+}
+
+tr:nth-child(odd)
+{
+    background-color: khaki;
+}
+
+.row
+{
+    display: flex;
+}
+
+.column
+{
+    flex: 50%;
+}
+
+.left
+{
+    flex: 60%;
+}
+
+.right
+{
+    flex: 40%;
+}
+
+.center
+{
+    flex: 25%
+}
+
+.div-border
+{
+    border: 3px solid black;
+    border-radius: 3px;
+}
+
+.underline
+{
+    border-bottom: 1px solid black;
+}
